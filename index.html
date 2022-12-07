@@ -1,0 +1,441 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	
+	h1 {
+		font-size:32px;
+		font-weight:300;
+	}
+	
+	.disclaimerbox {
+		background-color: #eee;		
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	img.rounded {
+		border: 1px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+	
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+	
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+	
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		15px 15px 0 0px #fff, /* The fourth layer */
+		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		20px 20px 0 0px #fff, /* The fifth layer */
+		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		25px 25px 0 0px #fff, /* The fifth layer */
+		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		5px 5px 0 0px #fff, /* The second layer */
+		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		10px 10px 0 0px #fff, /* The third layer */
+		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+	
+	.vert-cent {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+<head>
+	<title>Benchmarking the Robustness of Multimodal Models</title>
+	<meta property="og:title" content="Benchmarking the Robustness of Multimodal Models." /> 
+	<meta property="og:description" content="We investigate the robustness of multimodal models under multimodal perturbation. We build benchmark evaluation datasets by image perturbation and text perturbation, where there are in total 17 images perturbation methods and 16 text perturbation methods.." />
+	<meta property="og:image" content="https://www.cs.cmu.edu/~jielinq/MMRobustness/resources/example.png" /> 
+	
+	<!-- Get from Google Analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src=""></script> 
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-75863369-6');
+	</script>
+</head>
+
+<body>
+	<br>
+	<center>
+		<span style="font-size:36px">Benchmarking Robustness of Multimodal Image-Text Models</span>
+		
+		<br>
+		<br>
+		<table align=center width=900px>
+			<table align=center width=900px>
+				<tr>
+					<td align=center width=100px>
+						<center>
+							<span style="font-size:22px"><a href="https://www.cs.cmu.edu/~jielinq/">Jielin Qiu<sup>&#9826,&#9827</sup></a></span>
+						</center>
+					</td>
+					<td align=center width=70px>
+						<center>
+							<span style="font-size:22px"><a href="https://bryanyzhu.github.io/">Yi Zhu<sup>&#9826</sup></a></span>
+						</center>
+					</td>
+					<td align=center width=100px>
+						<center>
+							<span style="font-size:22px"><a href="https://sxjscience.github.io/">Xingjian Shi<sup>&#9826</sup></a></span>
+						</center>
+					</td>
+					<td align=center width=120px>
+						<center>
+							<span style="font-size:22px"><a href="https://sites.google.com/site/zhiqiangtanghomepage">Zhiqiang Tang<sup>&#9826</sup></a></span>
+						</center>
+					</td>
+					<td align=center width=80px>
+						<center>
+							<span style="font-size:22px"><a href="https://safeai-lab.github.io/">Ding Zhao<sup>&#9827</sup></a></span>
+						</center>
+					</td>
+					<td align=center width=60px>
+						<center>
+							<span style="font-size:22px"><a href="https://aisecure.github.io/">Bo Li<sup>&#9826,&#9830</sup></a></span>
+						</center>
+					</td>
+					<td align=center width=60px>
+						<center>
+							<span style="font-size:22px"><a href="http://www.cs.cmu.edu/~muli/">Mu Li<sup>&#9826</sup></a></span>
+						</center>
+					</td>
+				</tr>
+			</table>
+			<table align=center width=800px>
+				<tr>
+					<td align=center width=150px>
+						<center>
+							<span style="font-size:20px"><sup>&#9826</sup>AWS AI Labs</span>
+						</center>
+					</td>
+					<td align=center width=250px>
+						<center>
+							<span style="font-size:20px"><sup>&#9827</sup>Carnegie Mellon University</span>
+						</center>
+					</td>
+					<td align=center width=350px>
+						<center>
+							<span style="font-size:20px"><sup>&#9830</sup>University of Illinois Urbana-Champaign</span>
+						</center>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<table align=center width=250px>
+				<tr>
+					<td align=center width=120px>
+						<center>
+							<span style="font-size:24px"><a href='https://www.cs.cmu.edu/~jielinq/MMRobustness/'>[Paper]</a></span><br>
+						</center>
+					</td>
+					<td align=center width=120px>
+						<center>
+							<span style="font-size:24px"><a href='https://github.com/Jason-Qiu/MM_Robustness_Benchmark'>[GitHub]</a></span><br>
+						</center>
+					</td>
+				</tr>
+			</table>
+		</table>
+	</center>
+
+	<br>
+
+	<center>
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:1000px" src="./resources/examples.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=750px>
+			<tr>
+				<td>
+					Multimodal models are sensitive to image/text perturbations, i.e., perturbed image (i.e., adding pixelation) can lead the model to retrieve wrong texts, and perturbed text (i.e., synonym replacement, deletion) can lead the model to retrieve wrong images.
+				</td>
+			</tr>
+		</table>
+	</center>
+
+	<hr>
+	<center>
+	<table align=center width=750px>
+		<center><h1>Abstract</h1></center>
+		<tr>
+			<td>
+				Multimodal models have shown remarkable performance in real-world applications. The robustness of intelligent systems against distribution shifts is crucial for downstream applications.  In this paper, we investigate and benchmark the robustness of multimodal image-text models under image and text perturbations. We build several benchmark evaluation datasets by applying 17 image perturbation and 16 text perturbation methods. Furthermore, we evaluate the robustness of multimodal image-text models on three downstream tasks, including image-text retrieval, visual reasoning, and visual entailment. We observe that, under image or text perturbations, the performance of multimodal models drop by more than 10\% on image-test retrieval task, and more than 5\% on visual reasoning and visual entailment tasks.  We also observed that (1) those multimodal models are more sensitive to image perturbations than text perturbations; (2) for text perturbations, character-level perturbations showed higher adversarial impact than word-level and sentence-level perturbations.  Our findings could (i) serve as robustness evaluation benchmarks under multimodal image-text settings; (ii) provide inspiration about how to deploy more robust models for real-world applications.
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<hr>
+	<center><h1>Perturbation Strategies </h1></center>
+
+
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:700px" src="./resources/image_method.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+	<br>
+	<br>
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:700px" src="./resources/text_method.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</center>
+	<br>
+
+
+	<hr>
+	<center><h1>Examples </h1></center>
+
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:900px" src="./resources/image_examples.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=800px>
+			<tr>
+				<td>
+					Examples of image perturbation on COCO dataset, where there are 17 image perturbation categories in total.
+				</td>
+			</tr>
+		</table>
+
+	<br>
+
+
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:700px" src="./resources/text_examples.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=800px>
+			<tr>
+				<td>
+					Example of text perturbation on Flickr30K dataset, where there are 16 text perturbation categories in total.
+				</td>
+			</tr>
+		</table>
+	</center>
+
+	<br>
+
+	<hr>
+	<center><h1>Evaluation Results </h1></center>
+
+
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:900px" src="./resources/itr_ip.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+	<br>
+
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:900px" src="./resources/itr_tp.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+	<br>
+	
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:900px" src="./resources/vr_ip.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+	<br>
+
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:900px" src="./resources/vr_tp.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+	<br>
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:900px" src="./resources/ve_ip.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+	<br>
+
+		<table align=center width=850px>
+			<tr>
+				<td width=260px>
+					<center>
+						<img class="round" style="width:900px" src="./resources/ve_tp.png"/>
+					</center>
+				</td>
+			</tr>
+		</table>
+
+	</center>
+
+
+
+	<br>
+	<hr>
+	<table align=center width=450px>
+		<center><h1>Paper Preprint</h1></center>
+		<tr>
+			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
+			<td><span style="font-size:14pt">Qiu, J., Zhu, Y., Shi, X., Tang, Z., Zhao, D., Li, B., Li, M.<br>
+				<b>Benchmarking Robustness of Multimodal Image-Text Models.</b><br>
+				Under Review.<br>
+				(hosted on <a href="">ArXiv</a>)<br>
+				<!-- (<a href="./resources/camera-ready.pdf">camera ready</a>)<br> -->
+				<span style="font-size:4pt"><a href=""><br></a>
+				</span>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<table align=center width=600px>
+		<tr>
+			<td><span style="font-size:14pt"><center>
+				<a href="./resources/bibtex.txt">[Bibtex]</a>
+			</center></td>
+		</tr>
+	</table>
+
+	<hr>
+	<br>
+
+	<table align=center width=900px>
+		<tr>
+			<td width=400px>
+				<left>
+					<center><h1>Acknowledgements</h1></center>
+					This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful</a> ECCV project; the code can be found <a href="https://github.com/richzhang/webpage-template">here</a>.
+				</left>
+			</td>
+		</tr>
+	</table>
+
+<br>
+</body>
+</html>
+
