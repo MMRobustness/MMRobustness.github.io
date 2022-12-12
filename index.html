@@ -119,7 +119,7 @@
     <br>
 
     <div class="section">
-        <h2>Evaluation tasks, datasets, models and metrics</h2>
+        <h2>Evaluation Tasks, Datasets, Models and Metrics</h2>
         <hr>
         <div class="col justify-content-center text-center">
             <div class="col-sm-12">
@@ -132,26 +132,12 @@
     <br>
 
 
-
     <div class="section">
-        <h2>Few-Shot Policy Generalization to Out-of-distribution Tasks</h2>
+        <h2>Image-text Retrieval Evaluation Results</h2>
         <hr>
-        <div class="row justify-content-left">
-            
-            <div class="col-sm-7">
-                <br>
-                <p>
-                    We desire to test whether trajectory prompts enable the extrapolation ability when handling tasks with goals out of the training ranges. 
-                    We sample 8 training tasks in Ant-dir and 3 testing tasks, two of which have indexes smaller than the minimum task index and one larger than the maximum. 
-                    The task index is proportional to the desired direction angle. 
-                    <!-- <br> -->
-                    We find that Prompt-DT still performs better than baselines with no prompt augmentations.
-                </p>
-            </div>
-            <!-- <div class="col-sm-1">
-            </div> -->
-            <div class="col-sm-5">
-                <img src="img/Ant-dir-ood-1441-rebuttal.png" style="width:100%">
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/itr_table.png" style="width:100%">
             </div>
         </div>
 
@@ -160,49 +146,92 @@
     <br>
 
     <div class="section">
-        <h2>Sensitivity to Prompt Quantity and Quality</h2>
+        <h2>Visual Reasoning Evaluation Results</h2>
         <hr>
-        <div class="row justify-content-left">
-                <p>
-                    In practice, there may exist a limited amount of high-quality demonstrations for each test task, or the demonstrations may contain trajectories with heterogeneous quality. 
-                    Our experiments show that, with trajectory prompt sampled from expert demonstrations and expert training dataset, Prompt-DT is not sensitive to the prompt quantity and can successfully extract task-specific information even with prompts containing only a few timesteps.
-                    We conduct an ablation study in Cheetah-vel for prompt quality.
-                    We find that Prompt-DT could adjust its generated actions according to the given trajectory prompt when training with expert data or medium data.
-                    However, when training with random data, only feeding Prompt-DT expert or medium trajectory prompts does not help improve the generalization ability.  
-                </p>
-            <div class="col-sm-5">
-                <br>
-                <img src="img/prompt_quantity_table.png" style="width:100%">
-            </div>
-            <div class="col-sm-7">
-                <img src="img/Ablation_Prompt_Quality_cheetah_vel.png" style="width:100%">
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/VR_table.png" style="width:100%">
             </div>
         </div>
 
     </div>
 
+    <br>
+
+    <div class="section">
+        <h2>Visual Entailment Evaluation Results</h2>
+        <hr>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/VE_table.png" style="width:100%">
+            </div>
+        </div>
+
+    </div>
 
     <br>
+
+
+    <div class="section">
+        <h2>Image Captioning Evaluation Results</h2>
+        <hr>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/captioning_result.png" style="width:100%">
+            </div>
+        </div>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/captioning_table.png" style="width:100%">
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+
+
+    <div class="section">
+        <h2>Text-to-Image Generation Evaluation Results</h2>
+        <hr>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/generation_result.png" style="width:100%">
+            </div>
+        </div>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/generation_table_SD.png" style="width:100%">
+            </div>
+        </div>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/generation_table_GLIDE.png" style="width:100%">
+            </div>
+        </div>
+        <div class="col justify-content-center text-center">
+            <div class="col-sm-12">
+                <img src="images/detection.png" style="width:100%">
+            </div>
+        </div>
+    </div>
+
+    <br>
+
 
     <div class="section">
         <h2>Bibtex</h2>
         <hr>
         <div class="bibtexsection">
-            @inproceedings{xu2022prompt,
-                title={Prompting Decision Transformer for Few-Shot Policy Generalization},
-                author={Xu, Mengdi and Shen, Yikang and Zhang, Shun and Lu, Yuchen 
-                and Zhao, Ding and Tenenbaum, B. Joshua and Gan, Chuang},
-                booktitle={Thirty-ninth International Conference on Machine Learning},
-                year={2022}
-            }
+            [available soon]
         </div>
     </div>
 
     <hr>
 
     <footer>
-        <p>Send feedback and questions to <a href="https://mxu34.github.io">Mengdi Xu</a>. 
-            This page is modified based on <a href="https://yilundu.github.io/gem/">here</a>.
+        <p>
+            Acknowledgements: This page is modified from <a href="https://yilundu.github.io/gem/">here</a>.
         </p>
     </footer>
 
